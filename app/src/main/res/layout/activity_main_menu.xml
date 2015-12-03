@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="team10.studybuddy.MainMenu">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_profile"
+            android:id="@+id/id_btn_menu_profile"
+            android:onClick="openProfile"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_course"
+            android:id="@+id/id_btn_menu_course"
+            android:onClick="openCourse"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_rate"
+            android:id="@+id/id_btn_menu_rate"
+            android:onClick="openRate"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_event"
+            android:id="@+id/id_btn_menu_event"
+            android:onClick="openEvent"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_notification"
+            android:id="@+id/id_btn_menu_notification"
+            android:onClick="openNotification"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_setting"
+            android:id="@+id/id_btn_menu_setting"
+            android:onClick="openSetting"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_btn_application"
+            android:id="@+id/id_btn_menu_application"
+            android:onClick="openApplication"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log out"
+            android:id="@+id/id_btn_logout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

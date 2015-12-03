@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">StudyBuddy</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello">Welcome to StudyBuddy!</string>
+
+ <!--Title-->
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_course">Course</string>
+    <string name="title_activity_rate">Rate</string>
+    <string name="title_activity_event">Event</string>
+    <string name="title_activity_notification">Notification</string>
+    <string name="title_activity_setting">Setting</string>
+    <string name="title_activity_application">App Info</string>
+
+ <!--Button-->
+    <string name="str_btn_login">Login</string>
+    <string name="str_btn_signup">Sign Up</string>
+    <string name="str_btn_submit">Submit</string>
+    <string name="str_btn_profile">Profile</string>
+    <string name="str_btn_course">Course</string>
+    <string name="str_btn_rate">Rate</string>
+    <string name="str_btn_event">Event</string>
+    <string name="str_btn_notification">Notification</string>
+    <string name="str_btn_setting">Setting</string>
+    <string name="str_btn_application">App Info</string>
+
+
+<!--Prompt-->
+    <string name="prompt_id">mav ID</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_re_password">Re-enter Password</string>
+
+    <string name="studybuddy_intro">Our android application helps students create their own group based on courses, field of study and interest. Our team, however, has decided to mainly focus on the creation of study groups, which means most functionalities, will be dedicated to the study group section. This application will offer a personal profile, arrange group meetings, and set up a matching system by whichever category the user wants.</string>
+</resources>

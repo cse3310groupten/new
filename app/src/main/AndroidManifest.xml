@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="team10.studybuddy"
+    android:installLocation="preferExternal">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Main"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Main" />
+        </activity>
+        <activity
+            android:name=".Registration"
+            android:label="@string/title_activity_registration"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Main" />
+        </activity>
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/title_activity_main_menu" >
+        </activity>
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Course"
+            android:label="@string/title_activity_course"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Rate"
+            android:label="@string/title_activity_rate"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Event"
+            android:label="@string/title_activity_event"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Notification"
+            android:label="@string/title_activity_notification"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Setting"
+            android:label="@string/title_activity_setting"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+        <activity
+            android:name=".Application"
+            android:label="@string/title_activity_application"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MainMenu" />
+        </activity>
+    </application>
+
+</manifest>
