@@ -21,13 +21,15 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "eiVK4YPZpFbKBxwKD3PlUpSdDflusDQEZhhlPaWd", "hRw4QGOAYJKnWGS0BJuhRH6xUtRVpLrvGHz393PL");
         ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
 
         /*Create buttons*/
         btn_login = (Button) findViewById(R.id.id_btn_login);
@@ -73,15 +75,4 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
         return super.onOptionsItemSelected(item);
     }
-/*
-    public void openLoginPage(View view)    {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-    }
-
-    public void openRegistrationPage(View view)    {
-        Intent intent = new Intent(this, Registration.class);
-        startActivity(intent);
-    }
-*/
 }
