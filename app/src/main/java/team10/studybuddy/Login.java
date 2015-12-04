@@ -9,8 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+import java.text.ParseException;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
@@ -19,7 +25,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     EditText etPassword;
     TextView tvRegisterLink;
 
-    UserLocalStore userLocalStore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +43,34 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         bLogin.setOnClickListener(this);
         tvRegisterLink.setOnClickListener(this);
 
-        userLocalStore = new UserLocalStore(this);
+        ParseUser user = new ParseUser();
+
+        //ParseObject.registerSubclass(Course.class);
+
+
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.bLogin:
-                User user = new User(null, null);
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                ParseUser.logInInBackground(username, password, new LogInCallback() {
+                    @Override
+                    public void done(ParseUser user, com.parse.ParseException e) {
+                        if (user != null) {
+                            // Hooray! The user is logged in.
+                            Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                            allowAccess();
+                        } else {
+                            // Signup failed. Look at the ParseException to see what happened
+                            Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-                userLocalStore.storeUserData(user);
-                userLocalStore.setUserLoggedIn(true);
 
-                startActivity(new Intent(this, MainMenu.class));
 
                 break;
 
@@ -58,6 +79,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                 break;
         }
+    }
+
+    private void allowAccess() {
+        startActivity(new Intent(this, MainMenu.class));
     }
 
     @Override

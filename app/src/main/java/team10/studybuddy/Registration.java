@@ -12,9 +12,12 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import java.util.List;
 
@@ -22,9 +25,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     Button bRegister;
 
-    EditText etName;
+    EditText etFirstName, etLastName;
     EditText etUsername;
-    EditText etPassword;
+    EditText etPassword, etRePassword;
+
+    ParseUser newUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +38,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         bRegister= (Button) findViewById(R.id.bRegister);
 
-        etName = (EditText) findViewById(R.id.etName);
+        etFirstName = (EditText) findViewById(R.id.etFirstName);
+        etLastName = (EditText) findViewById(R.id.etLastName);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
+        etRePassword = (EditText) findViewById(R.id.etRePassword);
 
         bRegister.setOnClickListener(this);
 
@@ -43,55 +50,67 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch(v.getId()) {
             case R.id.bRegister:
-                String name = etName.getText().toString();
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
+                newUser = new ParseUser();
+                final String first_name = etFirstName.getText().toString();
+                final String last_name = etLastName.getText().toString();
+                final String username = etUsername.getText().toString();
+                final String password = etPassword.getText().toString();
+                String rePassword = etRePassword.getText().toString();
 
-                //User user = new User(name, username, password);
+                if (new String(password).equals(new String(rePassword)))
+                {
+                    newUser.setUsername(username);
+                    newUser.setPassword(password);
+                    newUser.setEmail(username); //username is their email
+                    newUser.signUpInBackground(new SignUpCallback() {
+                        @Override
+                        public void done(ParseException e)
+                        {
+                            if (e == null)
+                            {
+                                Toast.makeText(getApplicationContext(), "Account created.", Toast.LENGTH_SHORT).show();
+                                ParseUser newUser = ParseUser.getCurrentUser();
+                                newUser.setACL(new ParseACL(newUser));
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-                query.whereEqualTo("Username", "user1.uta.edu");
-
-                query.findInBackground(new FindCallback<ParseObject>() {
-                    public void done(List<ParseObject> objects, ParseException e) {
-                        if (e == null) {
-                            // The query was successful to find existing username
-                            showMessage();
-
-                        } else {
-                            // create new account holder
-                            ParseObject testUser = new ParseObject("User");
-
-                            testUser.put("first_name", "Brian");
-                            testUser.put("last_name", "Wong");
-                            testUser.put("password", "0000");
-                            testUser.put("username","user1@uta.edu");
-                            testUser.put("major","CE");
-                            testUser.put("no_of_ratings",0);
-                            testUser.put("rate",0);
-                            //privacy settings are initially updated as default(return true)
-                            testUser.put("show_firstname",true);
-                            testUser.put("show_lastname",true);
-                            testUser.put("show_email",true);
-                            testUser.put("show_gender",true);
-                            testUser.put("show_major",true);
-                            testUser.saveInBackground();
-
-
-
+                                allowAccess();
+                            }
+                            else
+                            {
+                                // Sign up didn't succeed. Look at the ParseException
+                                // to figure out what went wrong
+                                switch(e.getCode())
+                                {
+                                    case ParseException.CONNECTION_FAILED:
+                                        break;
+                                    case ParseException.ACCOUNT_ALREADY_LINKED:
+                                        break;
+                                    case ParseException.INVALID_ACL:
+                                        break;
+                                    case ParseException.MUST_CREATE_USER_THROUGH_SIGNUP:
+                                        break;
+                                    case ParseException.USERNAME_TAKEN:
+                                        break;
+                                }
+                            }
                         }
-                    }
-                });
+                    });
+                      // Create user using ParseObject
 
-
-
-                // Create user using ParseObject
-
-                startActivity(new Intent(this, Login.class));
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Passwords are not matching", Toast.LENGTH_SHORT).show();
+                }
                 break;
+            }
+
         }
+
+
+    private void allowAccess() {
+        startActivity(new Intent(this, MainMenu.class));
     }
 
     @Override

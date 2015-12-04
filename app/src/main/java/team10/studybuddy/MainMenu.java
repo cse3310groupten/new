@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.parse.ParseUser;
+
 public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_profile;
@@ -57,9 +59,8 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.id_btn_logout:
-                userLocalStore.clearUserData();
-                userLocalStore.setUserLoggedIn(false);
-
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser();
                 startActivity(new Intent(this, Login.class));
                 break;
         }

@@ -10,11 +10,13 @@ import android.widget.Button;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_login;
     Button btn_sign_up;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

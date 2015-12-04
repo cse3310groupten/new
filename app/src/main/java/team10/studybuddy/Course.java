@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseClassName;
+
+@ParseClassName("Course")
+
 public class Course extends AppCompatActivity {
 
     @Override
