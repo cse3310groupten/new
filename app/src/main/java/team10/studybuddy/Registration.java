@@ -59,7 +59,12 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 final String password = etPassword.getText().toString();
                 String rePassword = etRePassword.getText().toString();
 
-                if (new String(password).equals(new String(rePassword)))
+                if(new String(username).indexOf('@') == -1){
+                    Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
+                else if (new String(password).equals(new String(rePassword)))
                 {
                     newUser.put("first_name", first_name);
                     newUser.put("last_name", last_name);
