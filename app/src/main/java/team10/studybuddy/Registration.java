@@ -61,6 +61,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                 if (new String(password).equals(new String(rePassword)))
                 {
+                    newUser.put("first_name", first_name);
+                    newUser.put("last_name", last_name);
                     newUser.setUsername(username);
                     newUser.setPassword(password);
                     newUser.setEmail(username); //username is their email
@@ -83,15 +85,20 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                 switch(e.getCode())
                                 {
                                     case ParseException.CONNECTION_FAILED:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Connection Failure", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.ACCOUNT_ALREADY_LINKED:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Account Already Linked.", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.INVALID_ACL:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Invalid ACL", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.MUST_CREATE_USER_THROUGH_SIGNUP:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.USERNAME_TAKEN:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Username Taken", Toast.LENGTH_SHORT).show();
+                                         break;
                                 }
                             }
                         }
