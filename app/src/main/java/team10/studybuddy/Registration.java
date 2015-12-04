@@ -61,6 +61,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                 if (new String(password).equals(new String(rePassword)))
                 {
+                    newUser.put("first_name", first_name);
+                    newUser.put("last_name", last_name);
                     newUser.setUsername(username);
                     newUser.setPassword(password);
                     newUser.setEmail(username); //username is their email
