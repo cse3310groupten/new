@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -26,6 +27,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "eiVK4YPZpFbKBxwKD3PlUpSdDflusDQEZhhlPaWd", "hRw4QGOAYJKnWGS0BJuhRH6xUtRVpLrvGHz393PL");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         /*Create buttons*/
         btn_login = (Button) findViewById(R.id.id_btn_login);
