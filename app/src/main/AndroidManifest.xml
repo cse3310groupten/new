@@ -127,7 +127,7 @@
                 <!--
                   IMPORTANT: Change "com.parse.starter" to match your app's package name.
                 -->
-                <category android:name="team10.studdybuddy" />
+                <category android:name="team10.studybuddy" />
             </intent-filter>
         </receiver>
     </application>
