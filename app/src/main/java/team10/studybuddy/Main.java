@@ -12,6 +12,8 @@ import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.PushService;
+
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
 
@@ -25,6 +27,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
         Parse.initialize(this, "eiVK4YPZpFbKBxwKD3PlUpSdDflusDQEZhhlPaWd", "hRw4QGOAYJKnWGS0BJuhRH6xUtRVpLrvGHz393PL");
         ParseInstallation.getCurrentInstallation().saveInBackground();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
