@@ -14,14 +14,12 @@ import com.parse.ParseClassName;
 
 public class Course extends AppCompatActivity {
 
-    Button add, request, mycourse;
+    Button request, mycourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
-
-        add = (Button) findViewById(R.id.id_course_add_btn);
         request = (Button) findViewById(R.id.request_btn);
         mycourse= (Button) findViewById(R.id.my_course_btn);
 
@@ -48,13 +46,6 @@ public class Course extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void openAddCoursePage(View view)
-    {
-        Intent intent = new Intent(this, AddCourse.class);
-        startActivity(intent);
-
     }
 
     public void openMyCourses(View view)

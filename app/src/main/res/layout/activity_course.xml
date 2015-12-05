@@ -9,26 +9,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Courses"
-        android:id="@+id/id_course_add_btn"
-        android:layout_below="@+id/my_course_btn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="openAddCoursePage"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Request Study Group"
         android:id="@+id/request_btn"
-        android:layout_below="@+id/id_course_add_btn"
-        android:layout_alignRight="@+id/id_course_add_btn"
-        android:layout_alignEnd="@+id/id_course_add_btn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="openRequest"/>
+        android:onClick="openRequest"
+        android:layout_below="@+id/my_course_btn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -38,8 +26,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/id_course_add_btn"
-        android:layout_alignEnd="@+id/id_course_add_btn"
         android:onClick="openMyCourses"
-        />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
