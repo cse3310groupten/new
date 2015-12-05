@@ -21,7 +21,7 @@ public class Course extends AppCompatActivity {
         setContentView(R.layout.activity_course);
 
 
-        add = (Button) findViewById(R.id.add_btn);
+        add = (Button) findViewById(R.id.id_course_add_btn);
         request = (Button) findViewById(R.id.request_btn);
         mycourse= (Button) findViewById(R.id.my_course_btn);
 
@@ -55,5 +55,18 @@ public class Course extends AppCompatActivity {
         Intent intent = new Intent(this, AddCourse.class);
         startActivity(intent);
 
+    }
+
+    public void openMyCourses(View view)
+    {
+        Intent intent = new Intent (this, MyCourses.class);
+        startActivity(intent);
+
+    }
+
+    public void openRequest(View view)
+    {
+        Intent intent = new Intent (this, RequestStudyGroup.class);
+        startActivity(intent);
     }
 }
