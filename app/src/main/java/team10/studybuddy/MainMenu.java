@@ -20,7 +20,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
     Button btn_setting;
     Button btn_application;
     Button btn_logout;
-    UserLocalStore userLocalStore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,22 +38,10 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
         btn_logout.setOnClickListener(this);
 
-        userLocalStore = new UserLocalStore(this);
+
     }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-        if (authenticate() == true){
-        }
-        else{
 
-        }
-    }
-
-    private boolean authenticate(){
-        return userLocalStore.getUserLoggedIn();
-    }
 
     @Override
     public void onClick(View v) {

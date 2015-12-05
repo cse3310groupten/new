@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -48,6 +48,20 @@
             android:hint="Your username is your UTA Email" />
 
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:text="Select Your Major"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sMajor"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:text="Choose a Password"
             android:layout_height="wrap_content"/>
@@ -58,7 +72,8 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/etPassword"
-            android:hint="@string/prompt_password" />
+            android:hint="@string/prompt_password"
+            android:typeface="normal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,4 +104,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

@@ -3,11 +3,15 @@ package team10.studybuddy;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -29,6 +33,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     EditText etUsername;
     EditText etPassword, etRePassword;
 
+    private Spinner sMajor;
+
+    private static final String[]major = {"Aerospace Engineering", "Architectural Engineering", "Biomedical Engineering", "Civil Engineering", "Computer Engineering", "Computer Science", "Electrical Engineering", "Mechanical Engineering", "Software Engineering"};
+
     ParseUser newUser;
 
     @Override
@@ -44,6 +52,24 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         etPassword = (EditText) findViewById(R.id.etPassword);
         etRePassword = (EditText) findViewById(R.id.etRePassword);
 
+        sMajor = (Spinner) findViewById(R.id.sMajor);
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(Registration.this, android.R.layout.simple_spinner_item, major);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sMajor.setAdapter(adapter);
+
+        sMajor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("sMajor", (String) parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         bRegister.setOnClickListener(this);
 
     }
@@ -57,13 +83,28 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 final String last_name = etLastName.getText().toString();
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
+                final String major = sMajor.getSelectedItem().toString();
                 String rePassword = etRePassword.getText().toString();
 
-                if (new String(password).equals(new String(rePassword)))
+                if(new String(username).indexOf('@') == -1){
+                    Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
+                else if (new String(password).equals(new String(rePassword)))
                 {
+                    newUser.put("first_name", first_name);
+                    newUser.put("last_name", last_name);
                     newUser.setUsername(username);
                     newUser.setPassword(password);
                     newUser.setEmail(username); //username is their email
+                    newUser.put("show_firstname", true);
+                    newUser.put("show_lastname", true);
+                    newUser.put("show_major", true);
+                    newUser.put("show_email", true);
+                    newUser.put("rate", 0);
+                    newUser.put("no_of_ratings", 0);
+                    newUser.put("major", major);
                     newUser.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(ParseException e)
@@ -83,15 +124,20 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                 switch(e.getCode())
                                 {
                                     case ParseException.CONNECTION_FAILED:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Connection Failure", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.ACCOUNT_ALREADY_LINKED:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Account Already Linked.", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.INVALID_ACL:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Invalid ACL", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.MUST_CREATE_USER_THROUGH_SIGNUP:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                         break;
                                     case ParseException.USERNAME_TAKEN:
-                                        break;
+                                         Toast.makeText(getApplicationContext(), "Username Taken", Toast.LENGTH_SHORT).show();
+                                         break;
                                 }
                             }
                         }

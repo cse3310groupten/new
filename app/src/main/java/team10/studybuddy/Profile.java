@@ -4,13 +4,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RatingBar;
 
 public class Profile extends AppCompatActivity {
+
+    RatingBar rbRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        rbRatingBar = (RatingBar)findViewById(R.id.rbRatingBar);
+
     }
 
     @Override
@@ -34,4 +40,5 @@ public class Profile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
