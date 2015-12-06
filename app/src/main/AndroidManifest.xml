@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!--
       IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
@@ -64,6 +65,13 @@
                 android:value="team10.studybuddy.MainMenu" />
         </activity>
         <activity
+            android:name=".Files"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Files" />
+        </activity>
+        <activity
             android:name=".Course"
             android:label="@string/title_activity_course"
             android:parentActivityName=".MainMenu" >
@@ -96,7 +104,7 @@
                 android:value="team10.studybuddy.MainMenu" />
         </activity>
         <activity
-            android:name=".Setting"
+            android:name=".Settings"
             android:label="@string/title_activity_setting"
             android:parentActivityName=".MainMenu" >
             <meta-data
