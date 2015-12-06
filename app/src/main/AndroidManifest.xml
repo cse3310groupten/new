@@ -130,7 +130,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-<!--                   IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
                 <category android:name="team10.studybuddy" />
             </intent-filter>
         </receiver>
@@ -138,6 +138,22 @@
         <activity
             android:name=".AddCourse"
             android:label="@string/title_activity_add_course"
+            android:parentActivityName=".MyCourses" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Course" />
+        </activity>
+        <activity
+            android:name=".MyCourses"
+            android:label="@string/title_activity_my_courses"
+            android:parentActivityName=".Course" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Course" />
+        </activity>
+        <activity
+            android:name=".RequestStudyGroup"
+            android:label="@string/title_activity_request_study_group"
             android:parentActivityName=".Course" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
