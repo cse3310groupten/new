@@ -10,17 +10,65 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:weightSum="1">
 
+        <ImageView
+            android:id="@+id/image"
+            android:src="@mipmap/no_image_available"
+            android:layout_width="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Edit"
+            android:paddingBottom="10dp"
+            android:id="@+id/bEdit"
+            android:layout_gravity="center_horizontal"
+            android:onClick="openEdit" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textViewName"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/textViewEmail"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/textViewMajor"
+            android:layout_gravity="center_horizontal" />
 
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/rbRatingBar" />
     </LinearLayout>
 </ScrollView>

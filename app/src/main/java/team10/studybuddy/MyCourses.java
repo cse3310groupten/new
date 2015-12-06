@@ -17,6 +17,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyCourses extends AppCompatActivity {
@@ -52,13 +53,14 @@ public class MyCourses extends AppCompatActivity {
                     for(int i=0;i<List.size();i++)
                     {
                         prefix = List.get(i).getString("prefix");
-                        cnumber = List.get(i).getInt("course_number");
-
-                        temp += prefix+" "+cnumber+"\n";
-                        tv1.setText(temp);
+                    cnumber = List.get(i).getInt("course_number");
 
 
-                    }
+                    temp += prefix+" "+cnumber+"\n";
+                    tv1.setText(temp);
+
+
+                }
 
                 } else {
 
@@ -97,11 +99,16 @@ public class MyCourses extends AppCompatActivity {
         Intent intent = new Intent(this, AddCourse.class);
         startActivity(intent);
 
+
     }
 
+<<<<<<< HEAD
     public void openEdit(View view)
     {
         Intent intent = new Intent(this, EditCourse.class);
         startActivity(intent);
     }
+=======
+
+>>>>>>> refs/remotes/origin/Kevin
 }

@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+<<<<<<< HEAD
+=======
+import android.widget.CalendarView;
+>>>>>>> refs/remotes/origin/Kevin
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,11 +22,15 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> refs/remotes/origin/Kevin
 import java.util.List;
 
 public class EditCourse extends AppCompatActivity {
 
+<<<<<<< HEAD
     private Spinner courseToEdit, coursePrefix;
     EditText courseNumber;
     Button edit,delete;
@@ -33,10 +41,22 @@ public class EditCourse extends AppCompatActivity {
 
     String str_courseToEdit,str_prefix,tempPrefix,tempStr;
     int input_courseNum,tempNum;
+=======
+    Spinner CourseList,CoursePrefix;
+    EditText course;
+    Button submit;
+    ParseUser currentUser = ParseUser.getCurrentUser();
+    private static final String[]prefix = {"DELETE", "BE","BIOL", "CE","CHEM", "CSE", "EE", "ENGR","GEOL", "IE","MATH", "MSE", "MAE", "NE","PHYS","SCIE"};
+    String[] str_mycourses;
+    String str_prefix,str_mycourse, prefix1;
+    int cnumber1;
+    ArrayAdapter<String> adapter;
+>>>>>>> refs/remotes/origin/Kevin
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_edit_course);
 
         courseToEdit = (Spinner) findViewById(R.id.s_course_to_edit);
@@ -62,6 +82,36 @@ public class EditCourse extends AppCompatActivity {
                 }
 
                 else {
+=======
+        setContentView(R.layout.content_edit_course);
+
+        CourseList = (Spinner) findViewById(R.id.sMyCourse);
+        CoursePrefix = (Spinner) findViewById(R.id.sPrefix_edit);
+        course = (EditText) findViewById(R.id.course1_edit);
+        submit = (Button) findViewById(R.id.edit_course_submit_btn);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
+        query.whereEqualTo("user", currentUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+
+            public void done(List<ParseObject> List, ParseException e) {
+                if (e == null) {
+
+                    String str = "Retrieved " + List.size() + " scores";
+                    Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
+                    for(int i=0;i<List.size();i++)
+                    {
+                        prefix1 = List.get(i).getString("prefix");
+                        cnumber1 = List.get(i).getInt("course_number");
+
+                        str_mycourses[i]=prefix1+" "+cnumber1;
+
+                    }
+
+                } else {
+
+>>>>>>> refs/remotes/origin/Kevin
 
 
                 }
@@ -69,6 +119,7 @@ public class EditCourse extends AppCompatActivity {
         });
 
 
+<<<<<<< HEAD
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, Courses);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,6 +129,19 @@ public class EditCourse extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 str_courseToEdit = (String) parent.getItemAtPosition(position).toString();
+=======
+       adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, str_mycourses);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        CoursePrefix.setAdapter(adapter);
+
+        CoursePrefix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                str_mycourse = (String) parent.getItemAtPosition(position).toString();
+
+                Toast.makeText(getApplicationContext(), str_mycourse, Toast.LENGTH_SHORT).show();
+>>>>>>> refs/remotes/origin/Kevin
             }
 
             @Override
@@ -86,12 +150,22 @@ public class EditCourse extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, prefix);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         coursePrefix.setAdapter(adapter);
 
         coursePrefix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+=======
+
+        adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, prefix);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        CoursePrefix.setAdapter(adapter);
+
+        CoursePrefix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+>>>>>>> refs/remotes/origin/Kevin
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 str_prefix = (String) parent.getItemAtPosition(position).toString();
@@ -105,12 +179,20 @@ public class EditCourse extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/Kevin
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+<<<<<<< HEAD
         getMenuInflater().inflate(R.menu.menu_edit_course, menu);
+=======
+
+>>>>>>> refs/remotes/origin/Kevin
         return true;
     }
 
