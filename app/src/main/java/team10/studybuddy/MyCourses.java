@@ -98,4 +98,10 @@ public class MyCourses extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void openEdit(View view)
+    {
+        Intent intent = new Intent(this, EditCourse.class);
+        startActivity(intent);
+    }
 }

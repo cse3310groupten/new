@@ -33,7 +33,7 @@ public class AddCourse extends AppCompatActivity {
 
     String str_prefix1;
     int cNum1;
-
+    boolean sendToMyCourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,14 +107,14 @@ public class AddCourse extends AppCompatActivity {
                         {
                             st_course.put("user",currentUser.getCurrentUser());
                             st_course.put("prefix", str_prefix1);
-                            st_course.put("course_number",cNum1);
+                            st_course.put("course_number", cNum1);
                             st_course.saveInBackground();
 
                             Toast.makeText(getApplicationContext(), "Added course successfully.", Toast.LENGTH_SHORT).show();
-
+                            sendToMyCourse=true;
                         }
 
-                        Toast.makeText(getApplicationContext(), "already enrolled in.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "You are already enrolled in the course. Please try again.", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -124,9 +124,8 @@ public class AddCourse extends AppCompatActivity {
                 }
             });
 
-
-
-           // Toast.makeText(getApplicationContext(), "Added course(s) successfully.", Toast.LENGTH_SHORT).show();
+        if (sendToMyCourse)
+            startActivity(new Intent(this, MyCourses.class));
 
 
 
