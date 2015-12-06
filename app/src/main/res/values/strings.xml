@@ -38,4 +38,5 @@
     <string name="title_activity_add_course">Add Course</string>
     <string name="title_activity_my_courses">My Courses</string>
     <string name="title_activity_request_study_group">Request Study Group</string>
+    <string name="title_activity_edit_course">Edit Course</string>
 </resources>

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-public class Setting extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     CheckBox fname,lname,email,major;
     Button submit;
@@ -22,7 +22,7 @@ public class Setting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_settings);
 
         fname = (CheckBox) findViewById(R.id.setting_firstname);
         lname = (CheckBox) findViewById(R.id.setting_lastname);

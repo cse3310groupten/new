@@ -44,5 +44,6 @@
         android:layout_height="wrap_content"
         android:text="Edit"
         android:id="@+id/btn_course_edit"
-        android:layout_alignTop="@+id/btn_course_add" />
+        android:layout_alignTop="@+id/btn_course_add"
+        android:onClick="openEdit"/>
 </RelativeLayout>

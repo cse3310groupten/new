@@ -27,13 +27,13 @@ public class AddCourse extends AppCompatActivity {
     Button submit;
     private Spinner cPrefix1;
     private static final String[]prefix = {"PREFIX", "BE","BIOL", "CE","CHEM", "CSE", "EE", "ENGR","GEOL", "IE","MATH", "MSE", "MAE", "NE","PHYS","SCIE"};
-    ParseUser currentUser = ParseUser.getCurrentUser();
+    ParseUser currentUser;
     //ParseObject course_info = new ParseObject("Course");
     ParseObject st_course = new ParseObject("Student_Course");
 
     String str_prefix1;
     int cNum1;
-
+    boolean sendToMyCourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +89,7 @@ public class AddCourse extends AppCompatActivity {
 
     public void submitCourse(View view)
     {
+
         if(course1.getText().toString().equals("")) cNum1=0;
         else cNum1=Integer.parseInt(course1.getText().toString());
 
@@ -96,32 +97,35 @@ public class AddCourse extends AppCompatActivity {
         {
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
-            query.whereEqualTo("user", currentUser.getCurrentUser());
+            query.whereEqualTo("user", ParseUser.getCurrentUser());
             query.whereEqualTo("prefix", str_prefix1);
             query.whereEqualTo("course_number", cNum1);
             query.findInBackground(new FindCallback<ParseObject>() {
                 public void done(List<ParseObject> List, ParseException e) {
                     if (e == null) {
-                        String str = "already enrolled in " + str_prefix1 + " " + cNum1+ ". Please try again";
-                        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+                        if (List.size()==0)
+                        {
+                            st_course.put("user",currentUser.getCurrentUser());
+                            st_course.put("prefix", str_prefix1);
+                            st_course.put("course_number", cNum1);
+                            st_course.saveInBackground();
 
-                    } else {
+                            Toast.makeText(getApplicationContext(), "Added course successfully.", Toast.LENGTH_SHORT).show();
+                            sendToMyCourse=true;
+                        }
 
-                        st_course.put("prefix", str_prefix1);
-                        st_course.put("course_number", cNum1);
-                        st_course.put("user", currentUser.getCurrentUser());
+                        Toast.makeText(getApplicationContext(), "You are already enrolled in the course. Please try again.", Toast.LENGTH_SHORT).show();
 
-                        st_course.saveInBackground();
+                    }
 
-                        Toast.makeText(getApplicationContext(), "Added course successfully.", Toast.LENGTH_SHORT).show();
+                     else {
 
                     }
                 }
             });
 
-
-
-           // Toast.makeText(getApplicationContext(), "Added course(s) successfully.", Toast.LENGTH_SHORT).show();
+        if (sendToMyCourse)
+            startActivity(new Intent(this, MyCourses.class));
 
 
 
@@ -132,6 +136,9 @@ public class AddCourse extends AppCompatActivity {
 
 
         }
+
+
+
 
 
     }
