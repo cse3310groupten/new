@@ -40,20 +40,10 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show gender"
-        android:id="@+id/setting_gender"
-        android:checked="true"
-        android:layout_below="@+id/setting_email"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Show major"
         android:id="@+id/setting_major"
         android:checked="true"
-        android:layout_below="@+id/setting_gender"
+        android:layout_below="@+id/setting_email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -67,7 +57,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="showMessage"
+        android:onClick="submitChanges"
         />
 
 </RelativeLayout>
