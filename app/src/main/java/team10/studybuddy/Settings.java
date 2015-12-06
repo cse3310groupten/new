@@ -22,7 +22,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_settings);
 
         fname = (CheckBox) findViewById(R.id.setting_firstname);
         lname = (CheckBox) findViewById(R.id.setting_lastname);
