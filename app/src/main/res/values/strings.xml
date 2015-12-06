@@ -35,4 +35,8 @@
     <string name="prompt_re_password">Re-enter Password</string>
 
     <string name="studybuddy_intro">Our android application helps students create their own group based on courses, field of study and interest. Our team, however, has decided to mainly focus on the creation of study groups, which means most functionalities, will be dedicated to the study group section. This application will offer a personal profile, arrange group meetings, and set up a matching system by whichever category the user wants.</string>
+    <string name="title_activity_add_course">Add Course</string>
+    <string name="title_activity_my_courses">My Courses</string>
+    <string name="title_activity_request_study_group">Request Study Group</string>
+    <string name="title_activity_edit_course">Edit Course</string>
 </resources>

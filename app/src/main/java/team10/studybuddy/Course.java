@@ -1,9 +1,12 @@
 package team10.studybuddy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.parse.ParseClassName;
 
@@ -11,10 +14,15 @@ import com.parse.ParseClassName;
 
 public class Course extends AppCompatActivity {
 
+    Button request, mycourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
+
+        request = (Button) findViewById(R.id.request_btn);
+        mycourse= (Button) findViewById(R.id.my_course_btn);
+
     }
 
     @Override
@@ -22,6 +30,7 @@ public class Course extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course, menu);
         return true;
+
     }
 
     @Override
@@ -37,5 +46,18 @@ public class Course extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openMyCourses(View view)
+    {
+        Intent intent = new Intent (this, MyCourses.class);
+        startActivity(intent);
+
+    }
+
+    public void openRequest(View view)
+    {
+        Intent intent = new Intent (this, RequestStudyGroup.class);
+        startActivity(intent);
     }
 }
