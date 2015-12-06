@@ -159,6 +159,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Course" />
         </activity>
+        <activity
+            android:name=".EditCourse"
+            android:label="@string/title_activity_edit_course"
+            android:parentActivityName=".MyCourses" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.MyCourses" />
+        </activity>
     </application>
 
 </manifest>

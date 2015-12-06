@@ -86,7 +86,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 final String major = sMajor.getSelectedItem().toString();
                 String rePassword = etRePassword.getText().toString();
 
-                if(new String(username).indexOf('@') == -1){
+                if(!new String(username).matches("(?i).*uta.edu*")){ //checking if email is a uta email
                     Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -197,4 +197,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(getApplicationContext(), "Existing username.", Toast.LENGTH_SHORT).show();
 
     }
+
+
 }
