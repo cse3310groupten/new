@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="20dp"
             android:id="@+id/textViewMajor"
             android:layout_gravity="center_horizontal" />
 
@@ -66,7 +66,7 @@
             android:layout_height="match_parent"
             android:text="Edit"
             android:paddingBottom="10dp"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:id="@+id/bEdit"
             android:layout_gravity="center_horizontal"
             android:onClick="openEdit" />
