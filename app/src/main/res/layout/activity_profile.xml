@@ -20,19 +20,18 @@
         <ImageView
             android:id="@+id/image"
             android:src="@mipmap/no_image_available"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:paddingTop="10dp"
             android:paddingBottom="0dp"
             android:layout_height="wrap_content" />
 
-        <Button
+        <RatingBar
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Edit"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:id="@+id/bEdit"
             android:layout_gravity="center_horizontal"
-            android:onClick="openEdit" />
+            android:id="@+id/rbRatingBar" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,12 +61,16 @@
             android:id="@+id/textViewMajor"
             android:layout_gravity="center_horizontal" />
 
-        <RatingBar
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:layout_height="match_parent"
+            android:text="Edit"
             android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:id="@+id/bEdit"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/rbRatingBar" />
+            android:onClick="openEdit" />
+
+
     </LinearLayout>
 </ScrollView>
