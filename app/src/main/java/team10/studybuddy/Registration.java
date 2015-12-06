@@ -61,7 +61,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         sMajor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.v("major", (String) parent.getItemAtPosition(position));
+                Log.v("sMajor", (String) parent.getItemAtPosition(position));
             }
 
             @Override
