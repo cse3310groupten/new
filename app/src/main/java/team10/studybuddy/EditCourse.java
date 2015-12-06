@@ -82,6 +82,8 @@ public class EditCourse extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 str_courseToEdit = (String) parent.getItemAtPosition(position).toString();
 
+
+                
             }
 
             @Override
@@ -136,4 +138,22 @@ public class EditCourse extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void openDelete(View view)
+    {
+        String coursePrefixToEdit;
+        int courseNumToEdit;
+
+      // coursePrefixToEdit = str_courseToEdit.split("")[0];
+      //  courseNumToEdit = Integer.parseInt(str_courseToEdit.split(" ",1));
+
+
+    }
+    public void openEdit(View view)
+    {
+
+        Toast.makeText(getApplicationContext(), "Edited my course.", Toast.LENGTH_SHORT).show();
+
+    }
+
 }
