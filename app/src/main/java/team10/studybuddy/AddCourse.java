@@ -1,5 +1,6 @@
 package team10.studybuddy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,8 +13,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 public class AddCourse extends AppCompatActivity {
 
@@ -22,7 +28,8 @@ public class AddCourse extends AppCompatActivity {
     private Spinner cPrefix1;
     private static final String[]prefix = {"PREFIX", "BE","BIOL", "CE","CHEM", "CSE", "EE", "ENGR","GEOL", "IE","MATH", "MSE", "MAE", "NE","PHYS","SCIE"};
     ParseUser currentUser = ParseUser.getCurrentUser();
-    ParseObject course_info;
+    //ParseObject course_info = new ParseObject("Course");
+    ParseObject st_course = new ParseObject("Student_Course");
 
     String str_prefix1;
     int cNum1;
@@ -87,16 +94,44 @@ public class AddCourse extends AppCompatActivity {
 
         if((cNum1>0) && !(str_prefix1.equals("PREFIX")) )
         {
-            course_info = new ParseObject("course");
-            course_info.put("prefix", str_prefix1);
-            course_info.put("course_number", cNum1);
-            course_info.put("user_objectId",currentUser.getObjectId());
-            course_info.saveInBackground();
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
+            query.whereEqualTo("user", currentUser.getCurrentUser());
+            query.whereEqualTo("prefix", str_prefix1);
+            query.whereEqualTo("course_number", cNum1);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> List, ParseException e) {
+                    if (e == null) {
+                        String str = "already enrolled in " + str_prefix1 + " " + cNum1+ ". Please try again";
+                        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        st_course.put("prefix", str_prefix1);
+                        st_course.put("course_number", cNum1);
+                        st_course.put("user", currentUser.getCurrentUser());
+
+                        st_course.saveInBackground();
+
+                        Toast.makeText(getApplicationContext(), "Added course successfully.", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+
+
+
+           // Toast.makeText(getApplicationContext(), "Added course(s) successfully.", Toast.LENGTH_SHORT).show();
+
+
+
         }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Wrong information. Please try again.", Toast.LENGTH_SHORT).show();
 
 
-        Toast.makeText(getApplicationContext(), "Added course(s) successfully.", Toast.LENGTH_SHORT).show();
-
+        }
 
 
     }

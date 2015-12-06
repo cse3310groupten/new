@@ -22,10 +22,13 @@ import java.util.List;
 public class MyCourses extends AppCompatActivity {
 
     ParseUser currentUser = ParseUser.getCurrentUser();
-    ParseObject course_info = new ParseObject("Class");
+    ParseObject course_info = new ParseObject("Student_Course");
 
     Button add,edit;
-    TextView tv1,tv2,tv3,tv4,tv5,tv6;
+    TextView tv1;
+    String prefix,temp="";
+    int cnumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,26 +38,35 @@ public class MyCourses extends AppCompatActivity {
         edit = (Button) findViewById(R.id.btn_course_edit);
 
         tv1 = (TextView) findViewById(R.id.course1);
-        tv2 = (TextView) findViewById(R.id.course2);
-        tv3 = (TextView) findViewById(R.id.course3);
-        tv4 = (TextView) findViewById(R.id.course4);
-        tv5 = (TextView) findViewById(R.id.course5);
-        tv6 = (TextView) findViewById(R.id.course6);
-/*
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Course");
-        query.whereEqualTo("user_objectId", currentUser.getObjectId());
 
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
+        query.whereEqualTo("user", currentUser.getCurrentUser());
         query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> courseList, ParseException e) {
+            public void done(List<ParseObject> List, ParseException e) {
                 if (e == null) {
-                    String str ="Retrieved " + courseList.size() + " scores";
 
+                    String str = "Retrieved " + List.size() + " scores";
                     Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
+                    for(int i=0;i<List.size();i++)
+                    {
+                        prefix = List.get(i).getString("prefix");
+                        cnumber = List.get(i).getInt("course_number");
+
+                        temp += prefix+" "+cnumber+"\n";
+                        tv1.setText(temp);
+
+
+                    }
+
+                } else {
+
+
+
                 }
-                else
-                {}
             }
-        });*/
+        });
 
     }
 
