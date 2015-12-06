@@ -31,13 +31,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
     TextView textViewEmail;
     TextView textViewMajor;
     ImageView image;
+    ImageView initImage;
     Button bEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        retrieveImage();
+        if(ParseUser.getCurrentUser().get("picture")!=null) {
+            retrieveImage();
+        }
+
         rbRatingBar = (RatingBar) findViewById(R.id.rbRatingBar);
         bEdit = (Button) findViewById(R.id.bEdit);
         image = (ImageView) findViewById(R.id.image);

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-public class Setting extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     CheckBox fname,lname,email,major;
     Button submit;
