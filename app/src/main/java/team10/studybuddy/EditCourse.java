@@ -47,6 +47,7 @@ public class EditCourse extends AppCompatActivity {
         edit = (Button) findViewById(R.id.id_edit_btn);
         delete = (Button) findViewById(R.id.id_delete_btn);
 
+        Courses.add("My Course(s)");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
         query.whereEqualTo("user", ParseUser.getCurrentUser());
         query.findInBackground(new FindCallback<ParseObject>() {
