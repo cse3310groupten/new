@@ -104,7 +104,7 @@
                 android:value="team10.studybuddy.MainMenu" />
         </activity>
         <activity
-            android:name=".Setting"
+            android:name=".Settings"
             android:label="@string/title_activity_setting"
             android:parentActivityName=".MainMenu" >
             <meta-data
