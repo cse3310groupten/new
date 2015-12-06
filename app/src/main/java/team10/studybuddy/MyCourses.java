@@ -46,7 +46,7 @@ public class MyCourses extends AppCompatActivity {
             public void done(List<ParseObject> List, ParseException e) {
                 if (e == null) {
 
-                    String str = "Retrieved " + List.size() + " scores";
+                    String str = "Retrieved " + List.size() + " course(s).";
                     Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
 
                     for(int i=0;i<List.size();i++)
