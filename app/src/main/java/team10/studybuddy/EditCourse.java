@@ -29,11 +29,15 @@ public class EditCourse extends AppCompatActivity {
     Button edit,delete;
 
     private static final String[]prefix = {"PREFIX", "BE","BIOL", "CE","CHEM", "CSE", "EE", "ENGR","GEOL", "IE","MATH", "MSE", "MAE", "NE","PHYS","SCIE"};
-    ParseUser currentUser;
+    ParseQuery<ParseObject> query;
+
     List<String> Courses = new ArrayList<String>();
+    String[] inputCourseToEdit;
 
     String str_courseToEdit,str_prefix,tempPrefix,tempStr;
     int input_courseNum,tempNum;
+
+    boolean InputVerified;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class EditCourse extends AppCompatActivity {
         delete = (Button) findViewById(R.id.id_delete_btn);
 
         Courses.add("My Course(s)");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
+        query = ParseQuery.getQuery("Student_Course");
         query.whereEqualTo("user", ParseUser.getCurrentUser());
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> List, ParseException e) {
@@ -81,6 +85,11 @@ public class EditCourse extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 str_courseToEdit = (String) parent.getItemAtPosition(position).toString();
+
+                if (str_courseToEdit!=("My Course(s)")){
+                    InputVerified=true;
+                    inputCourseToEdit=str_courseToEdit.split(" ",2);}
+
 
 
                 
@@ -141,11 +150,36 @@ public class EditCourse extends AppCompatActivity {
 
     public void openDelete(View view)
     {
-        String coursePrefixToEdit;
-        int courseNumToEdit;
 
-      // coursePrefixToEdit = str_courseToEdit.split("")[0];
-      //  courseNumToEdit = Integer.parseInt(str_courseToEdit.split(" ",1));
+        if (InputVerified)
+        {
+
+            query = ParseQuery.getQuery("Student_Course");
+            query.whereEqualTo("user", ParseUser.getCurrentUser());
+            query.whereEqualTo("prefix", inputCourseToEdit[0]);
+            query.whereEqualTo("course_number", Integer.parseInt(inputCourseToEdit[1]));
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> List, ParseException e) {
+                    if (e == null) {
+
+                        List.get(0).deleteInBackground();
+                        Toast.makeText(getApplicationContext(), "Deleted  "+inputCourseToEdit[0]+" "+inputCourseToEdit[1]+" successfully.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else {
+
+
+                    }
+                }
+            });
+
+
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Choose course to delete.", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
