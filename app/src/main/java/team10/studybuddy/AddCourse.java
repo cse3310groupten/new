@@ -110,7 +110,9 @@ public class AddCourse extends AppCompatActivity {
                             st_course.put("user",currentUser.getCurrentUser());
                             st_course.put("prefix", str_prefix1);
                             st_course.put("course_number", cNum1);
+                            st_course.put("inGroup",false);
                             st_course.saveInBackground();
+
 
                             Toast.makeText(getApplicationContext(), "Added course successfully.", Toast.LENGTH_SHORT).show();
                             sendToMyCourse=true;
