@@ -1,5 +1,6 @@
 package team10.studybuddy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
+
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,51 +20,58 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EditCourse extends AppCompatActivity {
 
-    Spinner CourseList,CoursePrefix;
-    EditText course;
-    Button submit;
-    ParseUser currentUser = ParseUser.getCurrentUser();
-    private static final String[]prefix = {"DELETE", "BE","BIOL", "CE","CHEM", "CSE", "EE", "ENGR","GEOL", "IE","MATH", "MSE", "MAE", "NE","PHYS","SCIE"};
-    String[] str_mycourses;
-    String str_prefix,str_mycourse, prefix1;
-    int cnumber1;
-    ArrayAdapter<String> adapter;
+    private Spinner courseToEdit, coursePrefix;
+    EditText courseNumber;
+    Button edit,delete;
+
+    private static final String[]prefix = {"PREFIX", "BE","BIOL", "CE","CHEM", "CSE", "EE", "ENGR","GEOL", "IE","MATH", "MSE", "MAE", "NE","PHYS","SCIE"};
+    ParseQuery<ParseObject> query;
+    ParseObject st_course;
+
+    List<String> Courses = new ArrayList<String>();
+    String[] inputCourseToEdit;
+
+    String str_courseToEdit,str_prefix,tempPrefix,tempStr;
+    int input_courseNum,tempNum;
+
+    boolean InputVerified;
+    boolean sendToMyCourse=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_edit_course);
 
-        CourseList = (Spinner) findViewById(R.id.sMyCourse);
-        CoursePrefix = (Spinner) findViewById(R.id.sPrefix_edit);
-        course = (EditText) findViewById(R.id.course1_edit);
-        submit = (Button) findViewById(R.id.edit_course_submit_btn);
+        setContentView(R.layout.activity_edit_course);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
-        query.whereEqualTo("user", currentUser.getCurrentUser());
+        courseToEdit = (Spinner) findViewById(R.id.s_course_to_edit);
+        coursePrefix = (Spinner) findViewById(R.id.s_new_course_prefix);
+        courseNumber = (EditText) findViewById(R.id.new_course_num);
+        edit = (Button) findViewById(R.id.id_edit_btn);
+        delete = (Button) findViewById(R.id.id_delete_btn);
+
+        Courses.add("My Course(s)");
+        query = ParseQuery.getQuery("Student_Course");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
         query.findInBackground(new FindCallback<ParseObject>() {
-
             public void done(List<ParseObject> List, ParseException e) {
                 if (e == null) {
-
-                    String str = "Retrieved " + List.size() + " scores";
-                    Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
-
                     for(int i=0;i<List.size();i++)
                     {
-                        prefix1 = List.get(i).getString("prefix");
-                        cnumber1 = List.get(i).getInt("course_number");
-
-                        str_mycourses[i]=prefix1+" "+cnumber1;
+                        tempNum = List.get(i).getInt("course_number");
+                        tempPrefix = List.get(i).getString("prefix");
+                        tempStr = tempPrefix + " "+tempNum;
+                        Courses.add(tempStr);
 
                     }
 
-                } else {
+                }
 
+                else {
 
 
                 }
@@ -71,17 +79,23 @@ public class EditCourse extends AppCompatActivity {
         });
 
 
-       adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, str_mycourses);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, Courses);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        CoursePrefix.setAdapter(adapter);
+        courseToEdit.setAdapter(adapter);
 
-        CoursePrefix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        courseToEdit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                str_mycourse = (String) parent.getItemAtPosition(position).toString();
+                str_courseToEdit = (String) parent.getItemAtPosition(position).toString();
 
-                Toast.makeText(getApplicationContext(), str_mycourse, Toast.LENGTH_SHORT).show();
+                if (str_courseToEdit!=("My Course(s)")){
+                    InputVerified=true;
+                    inputCourseToEdit=str_courseToEdit.split(" ",2);}
+
+
+
+                
             }
 
             @Override
@@ -90,13 +104,13 @@ public class EditCourse extends AppCompatActivity {
             }
         });
 
-
         adapter = new ArrayAdapter<String>(EditCourse.this, android.R.layout.simple_spinner_item, prefix);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        CoursePrefix.setAdapter(adapter);
+        coursePrefix.setAdapter(adapter);
 
-        CoursePrefix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        coursePrefix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 str_prefix = (String) parent.getItemAtPosition(position).toString();
@@ -117,6 +131,8 @@ public class EditCourse extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
+        getMenuInflater().inflate(R.menu.menu_edit_course, menu);
+
         return true;
     }
 
@@ -134,4 +150,92 @@ public class EditCourse extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void openDelete(final View view)
+    {
+
+
+        if (InputVerified)
+        {
+
+            query = ParseQuery.getQuery("Student_Course");
+            query.whereEqualTo("user", ParseUser.getCurrentUser());
+            query.whereEqualTo("prefix", inputCourseToEdit[0]);
+            query.whereEqualTo("course_number", Integer.parseInt(inputCourseToEdit[1]));
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> List, ParseException e) {
+                    if (e == null) {
+
+                        List.get(0).deleteInBackground();
+                        Toast.makeText(getApplicationContext(), "Deleted  " + inputCourseToEdit[0] + " " + inputCourseToEdit[1] + " successfully.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(view.getContext(), MyCourses.class));
+
+                    } else {
+
+
+                    }
+                }
+            });
+
+
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Choose course to delete.", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+    public void openEdit(final View view)
+    {
+
+
+        if(courseNumber.getText().toString().equals("")) input_courseNum=0;
+        else input_courseNum=Integer.parseInt(courseNumber.getText().toString());
+
+
+        if((input_courseNum>0) && !(str_prefix.equals("PREFIX")) )
+        {
+
+            query = ParseQuery.getQuery("Student_Course");
+            query.whereEqualTo("user", ParseUser.getCurrentUser());
+            query.whereEqualTo("prefix", inputCourseToEdit[0]);
+            query.whereEqualTo("course_number", Integer.parseInt(inputCourseToEdit[1]));
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> List, ParseException e) {
+                    if (e == null) {
+
+                            st_course = List.get(0);
+                            st_course.put("prefix", str_prefix);
+                            st_course.put("course_number", input_courseNum);
+                            st_course.saveInBackground();
+
+                            Toast.makeText(getApplicationContext(), "Edited course successfully.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(view.getContext(),MyCourses.class));
+                    }
+
+                    else {
+
+                    }
+                }
+            });
+
+
+
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Wrong information. Please try again.", Toast.LENGTH_SHORT).show();
+
+
+        }
+
+
+
+
+
+    }
+
+
 }

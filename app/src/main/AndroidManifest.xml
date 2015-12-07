@@ -175,6 +175,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MyCourses" />
         </activity>
+        <activity
+            android:name=".EditEvent"
+            android:label="@string/title_activity_editevent"
+            android:parentActivityName=".Event" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Event" />
+        </activity>
+        <activity
+            android:name=".AddEvent"
+            android:label="@string/title_activity_addevent"
+            android:parentActivityName=".Event" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Event" />
+        </activity>
+        <activity
+            android:name=".Agenda"
+            android:label="@string/title_activity_agenda"
+            android:parentActivityName=".Event" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Event" />
+        </activity>
     </application>
 
 </manifest>
