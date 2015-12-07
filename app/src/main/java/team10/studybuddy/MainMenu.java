@@ -53,7 +53,11 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        return;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -102,7 +106,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
     }
 
     public void openSetting(View view)    {
-        Intent intent = new Intent(this, Setting.class);
+        Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 

@@ -47,7 +47,7 @@ public class MyCourses extends AppCompatActivity {
             public void done(List<ParseObject> List, ParseException e) {
                 if (e == null) {
 
-                    String str = "Retrieved " + List.size() + " scores";
+                    String str = "Retrieved " + List.size() + " course(s).";
                     Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
 
                     for(int i=0;i<List.size();i++)
@@ -71,7 +71,11 @@ public class MyCourses extends AppCompatActivity {
         });
 
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        return;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -102,5 +106,10 @@ public class MyCourses extends AppCompatActivity {
 
     }
 
+    public void openEdit(View view)
+    {
+        Intent intent = new Intent(this, EditCourse.class);
+        startActivity(intent);
+    }
 
 }

@@ -31,13 +31,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
     TextView textViewEmail;
     TextView textViewMajor;
     ImageView image;
+    ImageView initImage;
     Button bEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        retrieveImage();
+        if(ParseUser.getCurrentUser().get("picture")!=null) {
+            retrieveImage();
+        }
+
         rbRatingBar = (RatingBar) findViewById(R.id.rbRatingBar);
         bEdit = (Button) findViewById(R.id.bEdit);
         image = (ImageView) findViewById(R.id.image);
@@ -46,11 +50,19 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
         textViewEmail = (TextView) findViewById(R.id.textViewEmail);
         textViewMajor = (TextView) findViewById(R.id.textViewMajor);
         //Retrieve Name,Email,and Major from Parse
-        textViewName.setText(ParseUser.getCurrentUser().get("first_name") + " " +
-                ParseUser.getCurrentUser().get("last_name"));
-        textViewEmail.setText((String) ParseUser.getCurrentUser().get("username"));
-        textViewMajor.setText((String) ParseUser.getCurrentUser().get("major"));
-
+        if((Boolean)ParseUser.getCurrentUser().get("show_firstname") == true){
+            textViewName.append((CharSequence)ParseUser.getCurrentUser().get("first_name"));
+        }
+        textViewName.append(" ");
+        if((Boolean)ParseUser.getCurrentUser().get("show_lastname") == true){
+            textViewName.append((CharSequence)ParseUser.getCurrentUser().get("last_name"));
+        }
+        if((Boolean)ParseUser.getCurrentUser().get("show_email") == true){
+            textViewEmail.setText((String) ParseUser.getCurrentUser().get("username"));
+        }
+        if((Boolean)ParseUser.getCurrentUser().get("show_major") == true){
+            textViewMajor.setText((String) ParseUser.getCurrentUser().get("major"));
+        }
     }
 
     @Override

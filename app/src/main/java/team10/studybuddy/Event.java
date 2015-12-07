@@ -1,27 +1,62 @@
 package team10.studybuddy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
-public class Event extends AppCompatActivity {
+import com.parse.LogInCallback;
+import com.parse.ParseUser;
+
+public class Event extends AppCompatActivity implements View.OnClickListener {
     CalendarView myCalendarview;
+    Button bEventAdd;
+    Button bEventEdit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        bEventAdd = (Button) findViewById(R.id.bEventAdd);
+        bEventEdit = (Button) findViewById(R.id.bEventEdit);
         myCalendarview = (CalendarView)findViewById(R.id.calendarView);
         myCalendarview.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 Toast.makeText(getApplicationContext(), "I'm not here yet", Toast.LENGTH_SHORT).show();
+                //myCalendarview.getContext();
+                Intent intent = new Intent (myCalendarview.getContext(), Agenda.class);
+                startActivity(intent);
+
+
             }
         });
+        bEventAdd.setOnClickListener(this);
+        bEventEdit.setOnClickListener(this);
 
+
+    }
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.bEventAdd:
+                startActivity(new Intent(this, AddEvent.class));
+
+
+
+                break;
+
+            case R.id.bEventEdit:
+                startActivity(new Intent(this, EditEvent.class));
+
+                break;
+        }
     }
 
     @Override
