@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New course"
-            android:id="@+id/Text2"
+            android:id="@+id/text3"
             android:layout_below="@+id/s_course_to_edit"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />

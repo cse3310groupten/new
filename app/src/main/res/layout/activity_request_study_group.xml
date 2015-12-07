@@ -21,7 +21,7 @@
             android:id="@+id/Text1" />
 
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="82dp"
             android:id="@+id/id_group_myCourses"
             android:layout_below="@+id/Text1"
@@ -30,17 +30,35 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Students who are currently enrolled in the course"
-            android:id="@+id/Text2" />
+            android:text="Search"
+            android:id="@+id/btn_course_search"
+            android:layout_gravity="center_horizontal"
+            android:onClick="createStList"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/StList" />
+            android:id="@+id/text2"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Students who are currently enrolled in the course"
+            android:id="@+id/text3" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:id="@+id/id_group_stList"
+            android:layout_below="@+id/Text1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </LinearLayout>
 </RelativeLayout>
