@@ -10,9 +10,10 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="120dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,35 +31,43 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
-            android:id="@+id/btn_course_search"
-            android:layout_gravity="center_horizontal"
-            android:onClick="createStList"/>
+            android:text="You&apos;re currently in the study group studying for"
+            android:id="@+id/Text2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text2"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Available study group"
-            android:id="@+id/text3" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:id="@+id/id_group_list"
-            android:layout_below="@+id/Text1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/studygroupListview" />
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join Group"
+        android:id="@+id/btn_join"
+        android:onClick="joinGroup"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="42dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LEAVE GROUP"
+        android:id="@+id/btn_leave"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/btn_join"
+        android:layout_alignEnd="@+id/btn_join"
+        android:onClick="leaveGroup" />
+
 </RelativeLayout>

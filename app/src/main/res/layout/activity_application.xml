@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Contributors:"
-        android:id="@+id/Text3"
+        android:id="@+id/studygroupListview"
         android:layout_below="@+id/text3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Soonwon Park, Kevin Frances, Minjung Yoo, Brian Wong"
         android:id="@+id/Text4"
-        android:layout_below="@+id/Text3"
+        android:layout_below="@+id/studygroupListview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
