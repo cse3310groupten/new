@@ -22,24 +22,43 @@
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner"
+            android:layout_height="82dp"
+            android:id="@+id/id_group_myCourses"
             android:layout_below="@+id/Text1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:id="@+id/btn_course_search"
+            android:layout_gravity="center_horizontal"
+            android:onClick="createStList"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text2"
+            android:layout_gravity="center_horizontal" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Students who are currently enrolled in the course"
-            android:id="@+id/textView" />
+            android:id="@+id/text3" />
 
-        <ListView
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/StudentListView"
-            android:choiceMode="singleChoice" />
+            android:layout_height="82dp"
+            android:id="@+id/id_group_stList"
+            android:layout_below="@+id/Text1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
     </LinearLayout>
 </RelativeLayout>

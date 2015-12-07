@@ -49,7 +49,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Text2"
+        android:id="@+id/text3"
         android:text="Change option for the course"
         android:layout_below="@+id/tableRow"
         android:layout_alignParentStart="true"
@@ -61,7 +61,7 @@
         android:weightSum="1"
         android:minHeight="20dp"
         android:layout_weight=".05"
-        android:layout_below="@+id/Text2"
+        android:layout_below="@+id/text3"
         android:layout_alignParentStart="true"
         android:id="@+id/tableRow2">
 
