@@ -30,6 +30,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
     TextView textViewName;
     TextView textViewEmail;
     TextView textViewMajor;
+    TextView textViewNoOfRatings;
     ImageView image;
     ImageView initImage;
     Button bEdit;
@@ -49,7 +50,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
         textViewName = (TextView) findViewById(R.id.textViewName);
         textViewEmail = (TextView) findViewById(R.id.textViewEmail);
         textViewMajor = (TextView) findViewById(R.id.textViewMajor);
-        //Retrieve Name,Email,and Major from Parse
+        textViewNoOfRatings = (TextView) findViewById(R.id.tvNoOfRatings);
+
+        //Retrieve Name,Email,number of ratings,and Major from Parse
+        textViewNoOfRatings.setText((String)ParseUser.getCurrentUser().get("first_name")+ " has " + ParseUser.getCurrentUser().get("no_of_ratings") + " ratings");
         if((Boolean)ParseUser.getCurrentUser().get("show_firstname") == true){
             textViewName.append((CharSequence)ParseUser.getCurrentUser().get("first_name"));
         }
