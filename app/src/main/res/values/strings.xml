@@ -15,6 +15,9 @@
     <string name="title_activity_notification">Notification</string>
     <string name="title_activity_setting">Setting</string>
     <string name="title_activity_application">App Info</string>
+    <string name="title_activity_editevent">Edit Event</string>
+    <string name="title_activity_addevent">ADD Event</string>
+    <string name="title_activity_agenda">Agenda</string>
 
  <!--Button-->
     <string name="str_btn_login">Login</string>
