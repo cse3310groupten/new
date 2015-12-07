@@ -87,8 +87,10 @@ public class AddCourse extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void submitCourse(View view)
+    public void submitCourse(final View view)
     {
+        if (sendToMyCourse)
+            startActivity(new Intent(this,MyCourses.class));
 
         if(course1.getText().toString().equals("")) cNum1=0;
         else cNum1=Integer.parseInt(course1.getText().toString());
@@ -112,10 +114,12 @@ public class AddCourse extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "Added course successfully.", Toast.LENGTH_SHORT).show();
                             sendToMyCourse=true;
+                            submitCourse(view);
                         }
+                        else if (List.size()>0 && sendToMyCourse==false){
 
-                        Toast.makeText(getApplicationContext(), "You are already enrolled in the course. Please try again.", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getApplicationContext(), "You are already enrolled in the course. Please try again.", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                      else {
@@ -123,9 +127,6 @@ public class AddCourse extends AppCompatActivity {
                     }
                 }
             });
-
-        if (sendToMyCourse)
-            startActivity(new Intent(this, MyCourses.class));
 
 
 
