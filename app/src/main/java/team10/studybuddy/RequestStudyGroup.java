@@ -37,6 +37,7 @@ public class RequestStudyGroup extends AppCompatActivity {
 
     ParseQuery<ParseObject> query;
     ParseObject tempObject;
+    ParseObject JoinObj,LeaveObj;
 
     int tempNum;
     String tempStr,input_course,result="";
@@ -81,7 +82,7 @@ public class RequestStudyGroup extends AppCompatActivity {
                 input_course = (String) parent.getItemAtPosition(position).toString();
                 if (input_course != "My Course(s)") {
                     inputVerified = true;
-                    inputCourse = tempStr.split(" ", 2);
+                    inputCourse = input_course.split(" ", 2);
 
                 }
             }
@@ -98,24 +99,20 @@ public class RequestStudyGroup extends AppCompatActivity {
         query.whereEqualTo("inGroup",true);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> List, ParseException e) {
-                if (e == null) {
+                        if (e == null) {
 
-                    String str = "Retrieved " + List.size() + " study group(s).";
-                    Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
-
-                    for (int i = 0; i < List.size(); i++) {
-                        tempPrefix = List.get(i).getString("prefix");
-                        tempNum = List.get(i).getInt("course_number");
+                            for (int i = 0; i < List.size(); i++) {
+                                tempPrefix = List.get(i).getString("prefix");
+                                tempNum = List.get(i).getInt("course_number");
 
 
-                        result+= tempPrefix + " " + tempNum + "\n";
+                                result+= tempPrefix + " " + tempNum + "\n";
                         StudyGroup.setText(result);
 
 
                     }
-
-                    if(List.size()==0)
-                        StudyGroup.setText("No study group available this time");
+                            if(List.size()==0)
+                                result = "No available study group(s). Pleas join at least 1 study group.";
 
                 } else {
 
@@ -158,21 +155,24 @@ public class RequestStudyGroup extends AppCompatActivity {
 
         if(inputVerified){
 
-        query = ParseQuery.getQuery("Student_Course");
-            query.whereEqualTo("user",ParseUser.getCurrentUser());
-        query.whereEqualTo("prefix", inputCourse[0]);
-        query.whereEqualTo("course_number", Integer.parseInt(inputCourse[1]));
 
-            query.findInBackground(new FindCallback<ParseObject>() {
+        ParseQuery<ParseObject> q = ParseQuery.getQuery("Student_Course");
+            q.whereEqualTo("user",ParseUser.getCurrentUser());
+        q.whereEqualTo("prefix", inputCourse[0]);
+        q.whereEqualTo("course_number", Integer.parseInt(inputCourse[1]));
+
+            q.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> List, ParseException e) {
                     if (e == null) {
+                        JoinObj = List.get(0);
 
-                        tempObject = List.get(0);
-                        tempObject.put("inGroup", true);
-                        tempObject.saveInBackground();
+
+                        Toast.makeText(getApplicationContext(),JoinObj.getString("prefix"), Toast.LENGTH_SHORT).show();
+                        JoinObj.put("inGroup", true);
+                        JoinObj.saveInBackground();
                             Toast.makeText(getApplicationContext(), "joined in study group", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(view.getContext(), Course.class));
+                        startActivity(new Intent(view.getContext(),RequestStudyGroup.class));
                     } else {
                     }
                 }
@@ -189,26 +189,26 @@ public class RequestStudyGroup extends AppCompatActivity {
 
 }
 
-
     public void leaveGroup(final View view){
 
         if(inputVerified){
 
-            query = ParseQuery.getQuery("Student_Course");
-            query.whereEqualTo("user",ParseUser.getCurrentUser());
-            query.whereEqualTo("prefix", inputCourse[0]);
-            query.whereEqualTo("course_number", Integer.parseInt(inputCourse[1]));
+            ParseQuery<ParseObject> q = ParseQuery.getQuery("Student_Course");
+            q.whereEqualTo("user",ParseUser.getCurrentUser());
+            q.whereEqualTo("prefix", inputCourse[0]);
+            q.whereEqualTo("course_number", Integer.parseInt(inputCourse[1]));
 
-            query.findInBackground(new FindCallback<ParseObject>() {
+            q.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> List, ParseException e) {
                     if (e == null) {
 
-                        tempObject = List.get(0);
-                        tempObject.put("inGroup", false);
-                        tempObject.saveInBackground();
+
+                        LeaveObj = List.get(0);
+                        LeaveObj.put("inGroup", false);
+                        LeaveObj.saveInBackground();
                         Toast.makeText(getApplicationContext(), "You're no more in the study group", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(view.getContext(), Course.class));
+                        startActivity(new Intent(view.getContext(), RequestStudyGroup.class));
                     } else {
                     }
                 }
