@@ -15,7 +15,7 @@ public class Agenda extends AppCompatActivity {
         String day = intent.getStringExtra("day");
         String month = intent.getStringExtra("month");
         String year = intent.getStringExtra("year");
-        Toast.makeText(getApplicationContext(), day, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), day, Toast.LENGTH_SHORT).show();
 
     }
 }
