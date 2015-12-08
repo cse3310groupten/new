@@ -51,6 +51,7 @@ public class RequestStudyGroup extends AppCompatActivity {
 
         myCourse = (Spinner) findViewById(R.id.id_group_myCourses);
         StudyGroup = (TextView) findViewById(R.id.studygroupListview);
+
         myCourseList.add("My Course(s)");
         query = ParseQuery.getQuery("Student_Course");
         query.whereEqualTo("user", ParseUser.getCurrentUser());
