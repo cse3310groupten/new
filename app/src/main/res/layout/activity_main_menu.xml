@@ -38,12 +38,7 @@
             android:text="@string/str_btn_event"
             android:id="@+id/id_btn_menu_event"
             android:onClick="openEvent"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/str_btn_notification"
-            android:id="@+id/id_btn_menu_notification"
-            android:onClick="openNotification"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +57,6 @@
             android:layout_height="wrap_content"
             android:text="Log out"
             android:id="@+id/id_btn_logout"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"/>
 
     </LinearLayout>

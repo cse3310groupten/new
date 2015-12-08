@@ -31,7 +31,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         btn_course = (Button) findViewById(R.id.id_btn_menu_course);
         btn_rate = (Button) findViewById(R.id.id_btn_menu_rate);
         btn_event = (Button) findViewById(R.id.id_btn_menu_event);
-        btn_notification = (Button) findViewById(R.id.id_btn_menu_notification);
+        //btn_notification = (Button) findViewById(R.id.id_btn_menu_notification);
         btn_setting =(Button) findViewById(R.id.id_btn_menu_setting);
         btn_application =(Button) findViewById(R.id.id_btn_menu_application);
         btn_logout = (Button) findViewById(R.id.id_btn_logout);
@@ -100,10 +100,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         startActivity(intent);
     }
 
-    public void openNotification(View view)    {
-        Intent intent = new Intent(this, Notification.class);
-        startActivity(intent);
-    }
+   
 
     public void openSetting(View view)    {
         Intent intent = new Intent(this, Settings.class);

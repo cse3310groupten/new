@@ -18,7 +18,7 @@ public class Rate extends AppCompatActivity {
         setContentView(R.layout.activity_rate);
 
         byName = (Button) findViewById(R.id.btn_search_name);
-        byEmail = (Button) findViewById(R.id.btn_search_mail);
+       // byEmail = (Button) findViewById(R.id.btn_search_mail);
     }
 
     @Override
@@ -48,8 +48,5 @@ public class Rate extends AppCompatActivity {
         startActivity(new Intent(this, SearchByName.class));
     }
 
-    public void searchEmail(View view)
-    {
-        startActivity(new Intent(this, SearchByEmail.class));
-    }
+
 }
