@@ -30,14 +30,14 @@ public class Event extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 //Toast.makeText(getApplicationContext(), "I'm not here yet", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getApplicationContext(),""+dayOfMonth, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),""+dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(), month, Toast.LENGTH_SHORT).show();
                 //myCalendarview.getContext();
                 //Intent intent = new Intent (myCalendarview.getContext(), Agenda.class);
                 Intent intent = new Intent (Event.this, Agenda.class);
                 intent.putExtra("year",""+year);
                 intent.putExtra("day",""+dayOfMonth);
-                intent.putExtra("month",""+month);
+                intent.putExtra("month",""+(++month));
                 Event.this.startActivity(intent);
 
 
