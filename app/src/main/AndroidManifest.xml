@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="team10.studybuddy"
-    android:installLocation="preferExternal" >
+    android:installLocation="preferExternal">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,22 +26,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".Main"
-            android:launchMode="singleTop"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".Main" >
+            android:parentActivityName=".Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Main" />
@@ -49,26 +48,25 @@
         <activity
             android:name=".Registration"
             android:label="@string/title_activity_registration"
-            android:parentActivityName=".Main" >
+            android:parentActivityName=".Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Main" />
         </activity>
         <activity
             android:name=".MainMenu"
-            android:label="@string/title_activity_main_menu" >
-        </activity>
+            android:label="@string/title_activity_main_menu" />
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
         </activity>
         <activity
             android:name=".Files"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Files" />
@@ -76,7 +74,7 @@
         <activity
             android:name=".Course"
             android:label="@string/title_activity_course"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
@@ -84,7 +82,7 @@
         <activity
             android:name=".Rate"
             android:label="@string/title_activity_rate"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
@@ -92,7 +90,7 @@
         <activity
             android:name=".Event"
             android:label="@string/title_activity_event"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
@@ -100,7 +98,7 @@
         <activity
             android:name=".Notification"
             android:label="@string/title_activity_notification"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
@@ -108,7 +106,7 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_setting"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
@@ -116,7 +114,7 @@
         <activity
             android:name=".Application"
             android:label="@string/title_activity_application"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MainMenu" />
@@ -126,7 +124,7 @@
 
         <receiver
             android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
@@ -135,7 +133,7 @@
         </receiver>
         <receiver
             android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -148,7 +146,7 @@
         <activity
             android:name=".AddCourse"
             android:label="@string/title_activity_add_course"
-            android:parentActivityName=".MyCourses" >
+            android:parentActivityName=".MyCourses">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Course" />
@@ -156,7 +154,7 @@
         <activity
             android:name=".MyCourses"
             android:label="@string/title_activity_my_courses"
-            android:parentActivityName=".Course" >
+            android:parentActivityName=".Course">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Course" />
@@ -164,7 +162,7 @@
         <activity
             android:name=".RequestStudyGroup"
             android:label="@string/title_activity_request_study_group"
-            android:parentActivityName=".Course" >
+            android:parentActivityName=".Course">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Course" />
@@ -172,7 +170,7 @@
         <activity
             android:name=".EditCourse"
             android:label="@string/title_activity_edit_course"
-            android:parentActivityName=".MyCourses" >
+            android:parentActivityName=".MyCourses">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.MyCourses" />
@@ -180,26 +178,53 @@
         <activity
             android:name=".EditEvent"
             android:label="@string/title_activity_editevent"
-            android:parentActivityName=".Event" >
+            android:parentActivityName=".Agenda">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="team10.studybuddy.Event" />
+                android:value="team10.studybuddy.Agenda" />
         </activity>
         <activity
             android:name=".AddEvent"
             android:label="@string/title_activity_addevent"
-            android:parentActivityName=".Event" >
+            android:parentActivityName=".Agenda">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Agenda" />
+        </activity>
+        <activity
+            android:name=".Agenda"
+            android:label="@string/title_activity_agenda"
+            android:parentActivityName=".Event">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team10.studybuddy.Event" />
         </activity>
         <activity
-            android:name=".Agenda"
-            android:label="@string/title_activity_agenda"
-            android:parentActivityName=".Event" >
+            android:name=".SearchByName"
+            android:label="@string/title_activity_search_by_name"
+            android:parentActivityName=".Rate"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="team10.studybuddy.Event" />
+                android:value="team10.studybuddy.Rate" />
+        </activity>
+        <activity
+            android:name=".SearchByEmail"
+            android:label="@string/title_activity_search_by_email"
+            android:parentActivityName=".Rate"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Rate" />
+        </activity>
+        <activity
+            android:name=".AddRate"
+            android:label="@string/title_activity_add_rate"
+            android:parentActivityName=".Rate"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="team10.studybuddy.Rate" />
         </activity>
     </application>
 

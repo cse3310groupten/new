@@ -1,19 +1,133 @@
 package team10.studybuddy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestStudyGroup extends AppCompatActivity {
+
+    Spinner myCourse;
+    TextView StudyGroup;
+
+    List<String> myCourseList = new ArrayList<String>();
+
+    String[] inputCourse;
+    boolean inputVerified = false;
+
+
+    ParseQuery<ParseObject> query;
+    ParseObject tempObject;
+    ParseObject JoinObj,LeaveObj;
+
+    int tempNum;
+    String tempStr,input_course,result="";
+    String tempPrefix;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_study_group);
+
+        myCourse = (Spinner) findViewById(R.id.id_group_myCourses);
+        StudyGroup = (TextView) findViewById(R.id.studygroupListview);
+
+        myCourseList.add("My Course(s)");
+        query = ParseQuery.getQuery("Student_Course");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> List, ParseException e) {
+                if (e == null) {
+                    for (int i = 0; i < List.size(); i++) {
+                        tempPrefix = List.get(i).getString("prefix");
+                        tempNum = List.get(i).getInt("course_number");
+
+                        tempStr = tempPrefix + " " + tempNum;
+                        myCourseList.add(tempStr);
+
+                    }
+
+                } else {
+                }
+            }
+        });
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RequestStudyGroup.this, android.R.layout.simple_spinner_item,myCourseList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        myCourse.setAdapter(adapter);
+        myCourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                input_course = (String) parent.getItemAtPosition(position).toString();
+                if (input_course != "My Course(s)") {
+                    inputVerified = true;
+                    inputCourse = input_course.split(" ", 2);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Student_Course");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.whereEqualTo("inGroup",true);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> List, ParseException e) {
+                        if (e == null) {
+
+                            for (int i = 0; i < List.size(); i++) {
+                                tempPrefix = List.get(i).getString("prefix");
+                                tempNum = List.get(i).getInt("course_number");
+
+
+                                result+= tempPrefix + " " + tempNum + "\n";
+                        StudyGroup.setText(result);
+
+
+                    }
+                            if(List.size()==0)
+                                result = "No available study group(s). Pleas join at least 1 study group.";
+
+                } else {
+
+
+                }
+            }
+        });
+
     }
 
-    @Override
+
+
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_request_study_group, menu);
@@ -34,4 +148,81 @@ public class RequestStudyGroup extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+    public void joinGroup(final View view){
+
+        if(inputVerified){
+
+
+        ParseQuery<ParseObject> q = ParseQuery.getQuery("Student_Course");
+            q.whereEqualTo("user",ParseUser.getCurrentUser());
+        q.whereEqualTo("prefix", inputCourse[0]);
+        q.whereEqualTo("course_number", Integer.parseInt(inputCourse[1]));
+
+            q.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> List, ParseException e) {
+                    if (e == null) {
+                        JoinObj = List.get(0);
+
+
+                        Toast.makeText(getApplicationContext(),JoinObj.getString("prefix"), Toast.LENGTH_SHORT).show();
+                        JoinObj.put("inGroup", true);
+                        JoinObj.saveInBackground();
+                            Toast.makeText(getApplicationContext(), "joined in study group", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(view.getContext(),RequestStudyGroup.class));
+                    } else {
+                    }
+                }
+            });
+
+    }
+
+    else
+        {
+            Toast.makeText(getApplicationContext(), "Choose my course", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+}
+
+    public void leaveGroup(final View view){
+
+        if(inputVerified){
+
+            ParseQuery<ParseObject> q = ParseQuery.getQuery("Student_Course");
+            q.whereEqualTo("user",ParseUser.getCurrentUser());
+            q.whereEqualTo("prefix", inputCourse[0]);
+            q.whereEqualTo("course_number", Integer.parseInt(inputCourse[1]));
+
+            q.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> List, ParseException e) {
+                    if (e == null) {
+
+
+                        LeaveObj = List.get(0);
+                        LeaveObj.put("inGroup", false);
+                        LeaveObj.saveInBackground();
+                        Toast.makeText(getApplicationContext(), "You're no more in the study group", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(view.getContext(), RequestStudyGroup.class));
+                    } else {
+                    }
+                }
+            });
+
+        }
+
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Choose my course", Toast.LENGTH_SHORT).show();
+
+        }}
+
+
+
 }

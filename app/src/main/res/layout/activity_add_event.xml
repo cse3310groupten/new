@@ -9,11 +9,133 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="team10.studybuddy.AddEvent">
 
-    <ListView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:text="Add"
+        android:id="@+id/AddButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/Monthtext"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/AddButton"
+        android:layout_toRightOf="@+id/editText5"
+        android:layout_toEndOf="@+id/editText5" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Daytext"
+        android:layout_below="@+id/Monthtext"
+        android:layout_toLeftOf="@+id/AddButton"
+        android:layout_toRightOf="@+id/editText6"
+        android:layout_toEndOf="@+id/editText6" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Yeartext"
+        android:layout_below="@+id/Daytext"
+        android:layout_toLeftOf="@+id/AddButton"
+        android:layout_toRightOf="@+id/editText6"
+        android:layout_toEndOf="@+id/editText6" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Descriptiontext"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText5"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:text="Month" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText6"
+        android:layout_alignBottom="@+id/Daytext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editText5"
+        android:layout_alignEnd="@+id/editText5"
+        android:text="Day" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText7"
+        android:layout_below="@+id/Daytext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Year"
+        android:layout_toStartOf="@+id/Yeartext"
+        android:layout_toLeftOf="@+id/Yeartext" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:text="Description"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Prefixtext"
+        android:layout_below="@+id/Yeartext"
+        android:layout_toRightOf="@+id/editText7"
+        android:layout_toStartOf="@+id/editText"
+        android:layout_alignRight="@+id/Yeartext"
+        android:layout_alignEnd="@+id/Yeartext" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/Yeartext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editText7"
+        android:layout_alignEnd="@+id/editText7"
+        android:text="Prefix" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Cousetext"
+        android:layout_below="@+id/Prefixtext"
+        android:layout_alignRight="@+id/Prefixtext"
+        android:layout_alignEnd="@+id/Prefixtext"
+        android:layout_alignLeft="@+id/Prefixtext"
+        android:layout_alignStart="@+id/Prefixtext"
+        android:layout_above="@+id/editText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText8"
+        android:layout_above="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3"
+        android:text="CNum" />
+
 </RelativeLayout>
