@@ -51,17 +51,16 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener 
                 final String description_string = description.getText().toString();
                 final String prefix_string = pre.getText().toString();
                 final int number_string = Integer.parseInt(number.getText().toString());
+                new_event.put("prefix", prefix_string);
+                new_event.put("course_number", number_string);
+                new_event.put("day", day_string);
+                new_event.put("year", year_string);
+                new_event.put("month", month_string);
+                new_event.put("description", description_string);
                 new_event.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
-                        if(e==null) {
-                            new_event.put("prefix", prefix_string);
-                            new_event.put("course_number", number_string);
-                            new_event.put("day", day_string);
-                            new_event.put("year", year_string);
-                            new_event.put("month", month_string);
-                            new_event.put("description", description_string);
-                        }
+
                     }
                 });
                 startActivity(new Intent(this, MainMenu.class));

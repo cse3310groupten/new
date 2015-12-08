@@ -83,7 +83,7 @@ public class Agenda extends AppCompatActivity implements View.OnClickListener{
                                     if (e == null) {
 
                                         if (objects.size() == 0) {
-                                            tempDes = "There is no Event";
+                                            //tempDes = "There is no Event";
                                         } else {
                                             for (int i = 0; i < objects.size(); i++) {
                                                 tempDes += objects.get(i).getString("description") + "\n";
