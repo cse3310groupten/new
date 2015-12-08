@@ -50,11 +50,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Descriptiontext"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/editText" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -92,7 +92,50 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:text="Description"
-        android:layout_below="@+id/Yeartext"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Prefixtext"
+        android:layout_below="@+id/Yeartext"
+        android:layout_toRightOf="@+id/editText7"
+        android:layout_toStartOf="@+id/editText"
+        android:layout_alignRight="@+id/Yeartext"
+        android:layout_alignEnd="@+id/Yeartext" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/Yeartext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editText7"
+        android:layout_alignEnd="@+id/editText7"
+        android:text="Prefix" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Cousetext"
+        android:layout_below="@+id/Prefixtext"
+        android:layout_alignRight="@+id/Prefixtext"
+        android:layout_alignEnd="@+id/Prefixtext"
+        android:layout_alignLeft="@+id/Prefixtext"
+        android:layout_alignStart="@+id/Prefixtext"
+        android:layout_above="@+id/editText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText8"
+        android:layout_above="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3"
+        android:text="CNum" />
 
 </RelativeLayout>

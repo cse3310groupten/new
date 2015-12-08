@@ -28,7 +28,7 @@ public class Agenda extends AppCompatActivity implements View.OnClickListener{
     ParseQuery<ParseObject> Couesequery;
     ParseQuery<ParseObject> Eventquery;
     ParseObject st_course;
-    String str_courseToEdit, tempPrefix, tempday,tempyear,tempmonth,tempDes="";
+    String  tempPrefix, tempday,tempyear,tempmonth,tempDes="";
     int tempNum;
     String[] inputCourseToEdit;
 
