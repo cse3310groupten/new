@@ -25,7 +25,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener 
     private Button AddButton;
     private EditText day, month, year, description,pre,number;
 
-    ParseObject new_event = new ParseObject("event");
+    ParseObject new_event = new ParseObject("Event");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener 
                 final String year_string = year.getText().toString();
                 final String description_string = description.getText().toString();
                 final String prefix_string = pre.getText().toString();
-                final String number_string = number.getText().toString();
+                final int number_string = Integer.parseInt(number.getText().toString());
                 new_event.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
