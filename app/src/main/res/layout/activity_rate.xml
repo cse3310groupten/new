@@ -20,12 +20,5 @@
             android:id="@+id/btn_search_name"
             android:onClick="searchName"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search by email"
-            android:id="@+id/btn_search_mail"
-            android:onClick="searchEmail"/>
-
     </LinearLayout>
 </RelativeLayout>

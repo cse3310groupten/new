@@ -18,7 +18,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -30,10 +29,10 @@ public class AddRate extends AppCompatActivity {
     Button submit;
     boolean inputVerified=false;
 
-    ParseQuery<ParseUser> query;
+    ParseQuery<ParseObject> query;
     ParseObject tempObj;
     private static final String[] rateArr = {"RATE", "1","2","3","4","5"};
-
+    int noRates, rating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -91,11 +90,53 @@ public class AddRate extends AppCompatActivity {
     {
 
     if(inputVerified) {
+        query = ParseQuery.getQuery("_User");
+        query.whereEqualTo("objectId",id);
+        query.findInBackground
+                (new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> List, ParseException e) {
+                if (e == null) {
 
-        Toast.makeText(getApplicationContext(), "Updated rates successfully.", Toast.LENGTH_SHORT).show();
+
+                    tempObj = List.get(0);
+                    noRates = tempObj.getInt("no_of_ratings");
+                    rating = tempObj.getInt("rate");
+
+                    rating=rating+inputNum;
+                    noRates=noRates+1;
+
+                    tempObj.fetchInBackground(new GetCallback<ParseObject>() {
+                        public void done(ParseObject object, ParseException e) {
+                            if (e == null) {
+                                object.put("no_of_ratings", noRates);
+                                object.put("rate", rating);
+                                object.fetchInBackground();
+                                object.saveInBackground();
+                            } else {
+                            }
+
+                        }
+
+                    });
+
+                   tempObj.saveInBackground();
+                    tempObj.fetchInBackground();
+
+                    String str = "Updated rating successfully";
+
+                    Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+                   startActivity(new Intent(view.getContext(), Rate.class));
+                }
+
+                else {
+
+                }
+            }
+        });
+
 
     }
-        else {
+    else {
         Toast.makeText(getApplicationContext(), "Please choose scale to rate.", Toast.LENGTH_SHORT).show();
     }
 
