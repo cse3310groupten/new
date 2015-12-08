@@ -100,7 +100,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         startActivity(intent);
     }
 
-   
+
 
     public void openSetting(View view)    {
         Intent intent = new Intent(this, Settings.class);
