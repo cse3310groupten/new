@@ -220,11 +220,11 @@
         <activity
             android:name=".AddRate"
             android:label="@string/title_activity_add_rate"
-            android:parentActivityName=".SearchByName"
+            android:parentActivityName=".Rate"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="team10.studybuddy.SearchByName" />
+                android:value="team10.studybuddy.Rate" />
         </activity>
     </application>
 

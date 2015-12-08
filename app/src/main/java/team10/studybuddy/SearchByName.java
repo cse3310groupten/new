@@ -24,7 +24,7 @@ public class SearchByName extends AppCompatActivity {
     EditText name;
     TextView nameFound;
     Button yes,no,search;
-    String nameInput,tempStr,result="",getName;
+    String nameInput,tempStr,result="",getName,getObjectId="";
 
 
     ParseQuery query;
@@ -73,6 +73,7 @@ public class SearchByName extends AppCompatActivity {
 
                             if (getName == "") {
                                 getName = List.get(0).getString("first_name") + " " + List.get(0).getString("last_name");
+                                getObjectId = List.get(0).getObjectId();
                                 nameFound.setText(getName);
                             }
                         } else {
@@ -96,6 +97,7 @@ public class SearchByName extends AppCompatActivity {
                             } else {
                                 if(getName=="") {
                                     getName = List.get(0).getString("first_name") + " " + List.get(0).getString("last_name");
+                                    getObjectId = List.get(0).getObjectId();
                                     nameFound.setText(getName);
                                 }
 
@@ -120,8 +122,10 @@ public class SearchByName extends AppCompatActivity {
 
     public void pressedYes(View view)
     {
-        startActivity(new Intent(this,AddRate.class));
+        Intent intent = new Intent (this, AddRate.class);
 
+        intent.putExtra("id",getObjectId);
+        startActivity(intent);
     }
 
     public void pressedNo(View view)
