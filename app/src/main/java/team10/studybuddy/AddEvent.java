@@ -15,6 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener 
 
     private Button AddButton;
     private EditText day, month, year, description,pre,number;
-    ParseQuery<ParseObject> query;
-    ParseObject new_event;
+
+    ParseObject new_event = new ParseObject("event");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +45,22 @@ public class AddEvent extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.AddButton:
-                query = ParseQuery.getQuery("Event");
                 final String day_string = day.getText().toString();
                 final String month_string = month.getText().toString();
                 final String year_string = year.getText().toString();
                 final String description_string = description.getText().toString();
                 final String prefix_string = pre.getText().toString();
                 final String number_string = number.getText().toString();
-                query.findInBackground(new FindCallback<ParseObject>() {
+                new_event.saveInBackground(new SaveCallback() {
                     @Override
-                    public void done(List<ParseObject> objects, ParseException e) {
-                        if(e==null)
-                        {
-                            new_event = objects.get(0);
-                            new_event.put("prefix",prefix_string);
-                            new_event.put("course_number",number_string);
-                            new_event.put("day",day_string);
-                            new_event.put("year",year_string);
-                            new_event.put("month",month_string);
-                            new_event.put("description",description_string);
+                    public void done(ParseException e) {
+                        if(e==null) {
+                            new_event.put("prefix", prefix_string);
+                            new_event.put("course_number", number_string);
+                            new_event.put("day", day_string);
+                            new_event.put("year", year_string);
+                            new_event.put("month", month_string);
+                            new_event.put("description", description_string);
                         }
                     }
                 });
