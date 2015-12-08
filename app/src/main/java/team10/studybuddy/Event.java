@@ -13,24 +13,22 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseUser;
 
-public class Event extends AppCompatActivity implements View.OnClickListener {
+public class Event extends AppCompatActivity{
     CalendarView myCalendarview;
-    Button bEventAdd;
-    Button bEventEdit;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        bEventAdd = (Button) findViewById(R.id.bEventAdd);
-        bEventEdit = (Button) findViewById(R.id.bEventEdit);
+
         myCalendarview = (CalendarView)findViewById(R.id.calendarView);
         myCalendarview.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 //Toast.makeText(getApplicationContext(), "I'm not here yet", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),""+dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),""+dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(), month, Toast.LENGTH_SHORT).show();
                 //myCalendarview.getContext();
                 //Intent intent = new Intent (myCalendarview.getContext(), Agenda.class);
@@ -43,26 +41,9 @@ public class Event extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-        bEventAdd.setOnClickListener(this);
-        bEventEdit.setOnClickListener(this);
-
-
-    }
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.bEventAdd:
-                startActivity(new Intent(this, AddEvent.class));
 
 
 
-                break;
-
-            case R.id.bEventEdit:
-                startActivity(new Intent(this, EditEvent.class));
-
-                break;
-        }
     }
 
     @Override

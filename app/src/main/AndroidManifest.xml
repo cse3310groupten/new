@@ -178,18 +178,18 @@
         <activity
             android:name=".EditEvent"
             android:label="@string/title_activity_editevent"
-            android:parentActivityName=".Event">
+            android:parentActivityName=".Agenda">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="team10.studybuddy.Event" />
+                android:value="team10.studybuddy.Agenda" />
         </activity>
         <activity
             android:name=".AddEvent"
             android:label="@string/title_activity_addevent"
-            android:parentActivityName=".Event">
+            android:parentActivityName=".Agenda">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="team10.studybuddy.Event" />
+                android:value="team10.studybuddy.Agenda" />
         </activity>
         <activity
             android:name=".Agenda"

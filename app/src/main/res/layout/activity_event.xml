@@ -12,23 +12,4 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calendarView"
-        android:layout_toLeftOf="@+id/bEventEdit"
-        android:layout_toStartOf="@+id/bEventEdit"
-        android:text="Add"
-        android:id="@+id/bEventAdd" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit"
-        android:id="@+id/bEventEdit"
-        android:layout_below="@+id/calendarView"
-        android:layout_alignRight="@+id/calendarView"
-        android:layout_alignEnd="@+id/calendarView" />
 </RelativeLayout>

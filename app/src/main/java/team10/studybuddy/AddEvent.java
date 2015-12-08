@@ -18,9 +18,12 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddEvent extends AppCompatActivity {
+public class AddEvent extends AppCompatActivity implements View.OnClickListener {
 
     Button AddButton;
+    EditText day,month,year,description;
+
+
 
 
 
@@ -28,6 +31,15 @@ public class AddEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+        AddButton = (Button) findViewById(R.id.AddButton);
+        day = (EditText) findViewById(R.id.Daytext);
+        month = (EditText) findViewById(R.id.Monthtext);
+        year = (EditText) findViewById((R.id.Yeartext));
+        
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
